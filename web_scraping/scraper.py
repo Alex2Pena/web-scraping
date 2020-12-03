@@ -1,30 +1,17 @@
 import requests
+from bs4 import BeautifulSoup
 
 URL = 'https://en.wikipedia.org/wiki/Web_scraping'
 page = requests.get(URL)
-
-print(page.content)
-
-
-
-
-
-
-
-"""
-Walk through of https://realpython.com/beautiful-soup-web-scraper-python/
-"""
-
-###############
-# step 1
-###############
-
-# import requests
-
-# URL = 'https://www.monster.com/jobs/search/?q=Software-Developer&where=Australia'
-# page = requests.get(URL)
+soup = BeautifulSoup(page.content, 'html.parser')
 
 # print(page.content)
+
+results = soup.find(id="citation needed")
+
+print(results.prettify())
+
+
 
 
 ###############
